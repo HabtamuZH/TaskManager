@@ -334,3 +334,4 @@
 /home/habtamu/Projects/TaskManager/TaskManagerAPI/obj/Debug/net8.0/TaskManagerAPI.pdb
 /home/habtamu/Projects/TaskManager/TaskManagerAPI/obj/Debug/net8.0/TaskManagerAPI.genruntimeconfig.cache
 /home/habtamu/Projects/TaskManager/TaskManagerAPI/obj/Debug/net8.0/ref/TaskManagerAPI.dll
+/home/habtamu/Projects/TaskManager/TaskManagerAPI/obj/Debug/net8.0/TaskManagerAPI.sourcelink.json
