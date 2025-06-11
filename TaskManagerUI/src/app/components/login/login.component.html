@@ -1,0 +1,94 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <div class="login-header">
+      <div class="app-logo">
+        <mat-icon class="logo-icon">task_alt</mat-icon>
+        <h1 class="app-name">Task Manager</h1>
+      </div>
+      <h2 class="login-title">Welcome Back</h2>
+      <p class="login-subtitle">Sign in to your account</p>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">
+      <mat-icon>error</mat-icon>
+      {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Please enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field password-field" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          class="password-toggle"
+          (click)="hidePassword = !hidePassword"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePassword"
+        >
+          <mat-icon>{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="login-actions">
+        <button
+          mat-raised-button
+          type="submit"
+          class="login-button"
+          [disabled]="loginForm.invalid || isLoading"
+          [class.loading]="isLoading"
+        >
+          <div class="button-content">
+            <span class="button-text" [style.opacity]="isLoading ? 0 : 1">
+              <mat-icon>login</mat-icon>
+              Sign In
+            </span>
+            <mat-spinner *ngIf="isLoading" diameter="24" color="accent">
+            </mat-spinner>
+          </div>
+        </button>
+      </div>
+    </form>
+
+    <div class="signup-link">
+      <p>Don't have an account?</p>
+      <button
+        (click)="navigateToRegister()"
+        mat-stroked-button
+        class="signup-button"
+      >
+        Create Account
+      </button>
+    </div>
+  </mat-card>
+</div>

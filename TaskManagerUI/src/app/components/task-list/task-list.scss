@@ -1,0 +1,146 @@
+.task-list-container {
+  padding: 24px;
+  max-width: 1200px;
+  height: 80vh;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+  
+  h1 {
+    flex: 1;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .back-button {
+    color: #666;
+  }
+  
+  .create-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.tasks-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-tasks {
+  text-align: center;
+  padding: 60px 20px;
+  
+  .no-tasks-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+  
+  h3 {
+    margin: 0 0 8px 0;
+    color: #666;
+    font-size: 20px;
+  }
+  
+  p {
+    margin: 0 0 24px 0;
+    color: #999;
+  }
+}
+
+.tasks-table-container {
+  overflow-x: auto;
+}
+
+.tasks-table {
+  width: 100%;
+  
+  .task-title {
+    strong {
+      display: block;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    
+    .task-description {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  
+  .priority-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  .delete-action {
+    color: #f44336;
+  }
+}
+
+th.mat-header-cell {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+td.mat-cell {
+  padding: 16px 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .task-list-container {
+    padding: 16px;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    
+    h1 {
+      text-align: center;
+      font-size: 24px;
+    }
+    
+    .create-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  .tasks-table {
+    .task-description {
+      max-width: 200px;
+    }
+  }
+}
+

@@ -1,0 +1,110 @@
+<div class="task-list-container">
+  <div class="header">
+    <button mat-icon-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>All Tasks</h1>
+    <button mat-raised-button color="primary" (click)="openCreateTaskDialog()" class="create-button">
+      <mat-icon>add</mat-icon>
+      Create New Task
+    </button>
+  </div>
+
+  <mat-card class="tasks-card">
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading">
+        <p>Loading tasks...</p>
+      </div>
+
+      <div *ngIf="!isLoading && tasks.length === 0" class="no-tasks">
+        <mat-icon class="no-tasks-icon">assignment</mat-icon>
+        <h3>No tasks found</h3>
+        <p>Create your first task to get started!</p>
+        <button mat-raised-button color="primary" (click)="openCreateTaskDialog()">
+          <mat-icon>add</mat-icon>
+          Create Task
+        </button>
+      </div>
+
+      <div *ngIf="!isLoading && tasks.length > 0" class="tasks-table-container">
+        <table mat-table [dataSource]="tasks" class="tasks-table">
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let task">
+              <div class="task-title">
+                <strong>{{task.title}}</strong>
+                <p class="task-description" *ngIf="task.description">{{task.description}}</p>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let task">
+              <mat-chip [color]="getStatusColor(task.status)" selected>
+                {{getStatusText(task.status)}}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Priority Column -->
+          <ng-container matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef>Priority</th>
+            <td mat-cell *matCellDef="let task">
+              <span class="priority-badge" [style.background-color]="getPriorityColor(task.priority)">
+                {{getPriorityText(task.priority)}}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Due Date Column -->
+          <ng-container matColumnDef="dueDate">
+            <th mat-header-cell *matHeaderCellDef>Due Date</th>
+            <td mat-cell *matCellDef="let task">
+              {{formatDate(task.dueDate)}}
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let task">
+              <button mat-icon-button [matMenuTriggerFor]="taskMenu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #taskMenu="matMenu">
+                <button mat-menu-item (click)="openEditTaskDialog(task)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="updateTaskStatus(task, 0)" *ngIf="task.status !== 0">
+                  <mat-icon>pending_actions</mat-icon>
+                  <span>Mark as Pending</span>
+                </button>
+                <button mat-menu-item (click)="updateTaskStatus(task, 1)" *ngIf="task.status !== 1">
+                  <mat-icon>autorenew</mat-icon>
+                  <span>Mark as In Progress</span>
+                </button>
+                <button mat-menu-item (click)="updateTaskStatus(task, 2)" *ngIf="task.status !== 2">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Mark as Completed</span>
+                </button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="deleteTask(task)" class="delete-action">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

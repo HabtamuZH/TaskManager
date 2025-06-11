@@ -1,0 +1,72 @@
+<footer class="footer fade-in">
+  <div class="footer-content">
+    <div class="footer-section">
+      <div class="company-info">
+        <h3 class="company-name">
+          <mat-icon class="company-icon">task_alt</mat-icon>
+          TaskManager Pro
+        </h3>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h4>Links</h4>
+      <ul class="footer-links">
+        <li><a routerLink="/dashboard" class="footer-link">Dashboard</a></li>
+        <li><a routerLink="/tasks" class="footer-link">Tasks</a></li>
+        <li><a routerLink="/settings" class="footer-link">Settings</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Support</h4>
+      <ul class="footer-links">
+        <li>
+          <a href="https://help.taskmanager.com" class="footer-link">Help</a>
+        </li>
+        <li>
+          <a href="https://docs.taskmanager.com" class="footer-link">Docs</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Connect</h4>
+      <div class="social-links">
+        <button
+          mat-icon-button
+          class="social-button"
+          (click)="openLink('https://twitter.com')"
+          aria-label="Twitter"
+        >
+          <mat-icon>alternate_email</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="social-button"
+          (click)="openLink('https://linkedin.com')"
+          aria-label="LinkedIn"
+        >
+          <mat-icon>business</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          class="social-button"
+          (click)="openLink('https://github.com')"
+          aria-label="GitHub"
+        >
+          <mat-icon>code</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p class="copyright">© {{ currentYear }} Task Manager</p>
+      <a href="https://taskmanager.com/privacy" class="footer-bottom-link"
+        >Privacy Policy</a
+      >
+    </div>
+  </div>
+</footer>

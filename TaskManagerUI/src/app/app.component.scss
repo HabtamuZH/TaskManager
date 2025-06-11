@@ -1,0 +1,147 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  
+  &.with-navbar {
+    padding-top: 0;
+  }
+  
+  &.with-footer {
+    padding-bottom: 0;
+  }
+  
+  &.with-navbar.with-footer {
+    min-height: calc(100vh - 64px); // Account for navbar height
+  }
+}
+
+// Global styles for better visual appeal
+:host {
+  ::ng-deep {
+    // Enhanced Material Design theme
+    .mat-mdc-card {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+      border-radius: 16px !important;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+      }
+    }
+    
+    .mat-mdc-button {
+      border-radius: 12px !important;
+      font-weight: 500 !important;
+      text-transform: none !important;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+    
+    .mat-mdc-raised-button {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+      
+      &:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+      }
+    }
+    
+    .mat-mdc-form-field {
+      .mat-mdc-text-field-wrapper {
+        border-radius: 12px !important;
+      }
+    }
+    
+    .mat-mdc-dialog-container {
+      border-radius: 20px !important;
+      box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    .mat-mdc-snack-bar-container {
+      border-radius: 12px !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .mat-mdc-chip {
+      border-radius: 20px !important;
+      font-weight: 500 !important;
+    }
+    
+    .mat-mdc-table {
+      border-radius: 16px !important;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    }
+  }
+}
+
+// Responsive design improvements
+@media (max-width: 768px) {
+  .main-content {
+    padding: 0 8px;
+  }
+}
+
+// Animation classes
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Enhanced scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+

@@ -1,0 +1,101 @@
+<mat-toolbar class="navbar">
+  <div class="navbar-content">
+    <!-- Logo Section -->
+    <a
+      class="logo-section"
+      routerLink="/dashboard"
+      aria-label="TaskManager Pro Home"
+    >
+      <mat-icon class="logo-icon">task_alt</mat-icon>
+      <h1 class="logo-text">Task Manager</h1>
+    </a>
+
+    <!-- Navigation Links -->
+    <div class="nav-links" [ngClass]="{ 'nav-links-open': isMenuOpen }">
+      <!-- <a
+        mat-button
+        routerLink="/dashboard"
+        routerLinkActive="active-link"
+        class="nav-link"
+        >Dashboard</a
+      > -->
+      <a
+        mat-button
+        routerLink="/tasks"
+        routerLinkActive="active-link"
+        class="nav-link"
+        >My Tasks</a
+      >
+      <!-- <a
+        mat-button
+        routerLink="/profile"
+        routerLinkActive="active-link"
+        class="nav-link"
+        >Profile</a
+      > -->
+      <!-- <a
+        mat-button
+        routerLink="/settings"
+        routerLinkActive="active-link"
+        class="nav-link"
+        >Settings</a
+      > -->
+    </div>
+
+    <!-- User Avatar -->
+    <div class="user-section" *ngIf="currentUser">
+      <button
+        mat-icon-button
+        class="user-avatar"
+        [matMenuTriggerFor]="userMenu"
+        aria-label="User menu"
+      >
+        {{ getUserInitials() }}
+      </button>
+    </div>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <button
+      mat-icon-button
+      class="hamburger-menu"
+      (click)="toggleMenu()"
+      *ngIf="isMobileMenu"
+      aria-label="Toggle navigation menu"
+    >
+      <mat-icon>{{ isMenuOpen ? "close" : "menu" }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- User Menu Dropdown -->
+  <mat-menu #userMenu="matMenu" class="user-menu">
+    <div class="user-info-menu" *ngIf="currentUser">
+      <p class="user-name">
+        {{ currentUser.firstName }} {{ currentUser.lastName }}
+      </p>
+      <p class="user-email">{{ currentUser.email }}</p>
+      <p class="user-role">{{ currentUser.role }}</p>
+    </div>
+    <mat-divider class="menu-divider"></mat-divider>
+    <button mat-menu-item routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item routerLink="/tasks">
+      <mat-icon>assignment</mat-icon>
+      <span>My Tasks</span>
+    </button>
+    <!-- <button mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button> -->
+    <!-- <button mat-menu-item routerLink="/settings">
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button> -->
+    <mat-divider class="menu-divider"></mat-divider>
+    <button mat-menu-item class="logout-item" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Sign Out</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

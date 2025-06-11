@@ -1,0 +1,63 @@
+<div class="dashboard-container fade-in">
+  <div class="dashboard-header">
+    <h1>Dashboard</h1>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="intro-section slide-up">
+      <h2>Task Management</h2>
+      <p class="description">Organize and track your tasks efficiently.</p>
+      <div class="action-buttons">
+        <button
+          mat-flat-button
+          class="action-button create-button"
+          (click)="createNewTask()"
+          aria-label="Create new task"
+        >
+          <mat-icon>add</mat-icon>
+          New Task
+        </button>
+        <button
+          mat-flat-button
+          class="action-button view-button"
+          (click)="navigateToTasks()"
+          aria-label="View all tasks"
+        >
+          <mat-icon>list</mat-icon>
+          View Tasks
+        </button>
+      </div>
+    </div>
+
+    <div class="stats-section slide-up">
+      <h3>Task Overview</h3>
+      <div class="stats-grid" *ngIf="!isLoadingStats; else loadingTemplate">
+        <mat-card class="stat-card pending">
+          <mat-icon class="stat-icon">pending_actions</mat-icon>
+          <div class="stat-number">{{ taskStats.pending }}</div>
+          <p class="stat-label">Pending</p>
+        </mat-card>
+        <mat-card class="stat-card in-progress">
+          <mat-icon class="stat-icon">autorenew</mat-icon>
+          <div class="stat-number">{{ taskStats.inProgress }}</div>
+          <p class="stat-label">In Progress</p>
+        </mat-card>
+        <mat-card class="stat-card completed">
+          <mat-icon class="stat-icon">check_circle</mat-icon>
+          <div class="stat-number">{{ taskStats.completed }}</div>
+          <p class="stat-label">Completed</p>
+        </mat-card>
+        <mat-card class="stat-card total">
+          <mat-icon class="stat-icon">assignment</mat-icon>
+          <div class="stat-number">{{ taskStats.total }}</div>
+          <p class="stat-label">Total</p>
+        </mat-card>
+      </div>
+      <ng-template #loadingTemplate>
+        <div class="loading">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
